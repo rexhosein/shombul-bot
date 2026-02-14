@@ -111,7 +111,7 @@ def callback_answer(call):
                f"📝 <b>توضیحات:</b> راننده اسنپی که اگه تو ماشینش بشینی بوی جوراب و گوز خفه ات می‌کنه! 💨\n\n"
                f"💖 <b>لیست سوراخ‌ها (Ex):</b>\n❌ سلنا، النا، سیما، شیما، فاطی و ...\n\n"
                f"⚠️ <b>هشدار:</b> به دلیل نشت شدید گاز، سیگار کشیدن کنار رادین مساوی با انفجار محله است!")
-        bot.send_photo(call.message.chat.id, "https://i.ibb.co/ZprsGm1t/image.png", caption=cap, parse_mode="HTML", reply_markup=rd_markup)
+        bot.send_photo(call.message.chat.id, "https://ibb.co/5WQy7Vqh", caption=cap, parse_mode="HTML", reply_markup=rd_markup)
 
     elif call.data == "rate_radin_fart":
         p = random.randint(75, 100)
@@ -140,4 +140,5 @@ def save_report(message):
 if __name__ == "__main__":
     Thread(target=run).start()
     bot.infinity_polling()
+
 
