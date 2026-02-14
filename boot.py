@@ -3,27 +3,34 @@ import os
 from flask import Flask
 from threading import Thread
 
-# --- بخش جدید برای گول زدن کویِب ---
+# تنظیمات سرور داخلی برای گول زدن کویِب
 app = Flask('')
+
 @app.route('/')
 def home():
-    return "بیا، پورت بازه! دست از سر ربات بردار."
+    return "Bot is Running!"
 
 def run():
-    app.run(host='0.0.0.0', port=8080)
+    app.run(host='0.0.0.0', port=8000)
 
 def keep_alive():
     t = Thread(target=run)
     t.start()
-# ------------------------------
 
-bot = telebot.TeleBot("توکن_خودت_رو_اینجا_بذار")
+# --- توکن خودت رو بین دو کوتیشن بذار ---
+TOKEN = "6446342898:AAFW7_qjFmS6p322FfE462i3t4-6-638" 
+bot = telebot.TeleBot(TOKEN)
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-    bot.reply_to(message, "✅ شومبول علی روی سرور ابری زنده شد!")
+    bot.reply_to(message, "✅ شومبول علی با موفقیت روی سرور جدید مستقر شد!")
+
+@bot.message_handler(func=lambda message: True)
+def echo_all(message):
+    bot.reply_to(message, f"شما گفتی: {message.text}")
 
 if __name__ == "__main__":
-    keep_alive() # روشن کردن سرور الکی
-    print("✅ ربات بدون هیچ باگی آماده استفاده است")
+    print("🚀 در حال راه اندازی سرور داخلی...")
+    keep_alive()
+    print("✅ ربات آماده استفاده است...")
     bot.infinity_polling()
