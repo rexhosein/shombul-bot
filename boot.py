@@ -18,7 +18,7 @@ def keep_alive():
     t.start()
 
 # --- توکن خودت رو بین دو کوتیشن بذار ---
-TOKEN = "6446342898:AAFW7_qjFmS6p322FfE462i3t4-6-638" 
+TOKEN = "8543493612:AAHha9_7ph-kaxYCKPpztLQoeF1MygCrsUY" 
 bot = telebot.TeleBot(TOKEN)
 
 @bot.message_handler(commands=['start'])
@@ -34,3 +34,4 @@ if __name__ == "__main__":
     keep_alive()
     print("✅ ربات آماده استفاده است...")
     bot.infinity_polling()
+
