@@ -83,7 +83,7 @@ def callback_answer(call):
         p = random.randint(81, 100)
         bot.answer_callback_query(call.id, f"🍬 رادمهر {p}% پاستیله!\nرسماً داره به جای خون، ژله تو رگاش می‌چرخه! 😂", show_alert=True)
 
-    # رئیس حسین پاستیل (عکس جدید + بازی)
+    # رئیس حسین پاستیل
     elif call.data == "radmehr_boss":
         boss_markup = types.InlineKeyboardMarkup(row_width=1).add(
             types.InlineKeyboardButton("💉 تست تستسترون ابوی", callback_data='dad_test'),
@@ -91,7 +91,8 @@ def callback_answer(call):
             types.InlineKeyboardButton("🔙 بازگشت به رادمهر", callback_data='radmehr')
         )
         cap = "🕶 <b>اطلاعات فوق محرمانه: رئیس حسین پاستیل</b>\n\n⚖️ <b>جرم:</b> قاچاق پاستیل‌های تاریخ مصرف گذشته و خوردنِ پاستیلِ ملت!\n⚠️ <b>توضیحات:</b> ایشون جوری پاستیل می‌خوره که انگار فردا قراره شکر تو دنیا تموم بشه! رئیس کل کونی‌های شیرین‌خور منطقه!"
-        bot.send_photo(call.message.chat.id, "https://ibb.co/27XKnLBd", caption=cap, parse_mode="HTML", reply_markup=boss_markup)
+        # لینک اصلاح شده به لینک مستقیم (i.ibb)
+        bot.send_photo(call.message.chat.id, "https://i.ibb.co/27XKnLBd/image.png", caption=cap, parse_mode="HTML", reply_markup=boss_markup)
 
     elif call.data == "game_pastil":
         res = random.choice(['win', 'lose', 'lose_bad'])
@@ -121,7 +122,8 @@ def callback_answer(call):
                f"📝 <b>توضیحات:</b> راننده اسنپی که اگه تو ماشینش بشینی بوی جوراب و گوز خفه ات می‌کنه! 💨\n\n"
                f"💖 <b>لیست سوراخ‌ها (Ex):</b>\n❌ سلنا، النا، سیما، شیما، فاطی و ...\n\n"
                f"⚠️ <b>هشدار:</b> به دلیل نشت شدید گاز، فندک نزنید!")
-        bot.send_photo(call.message.chat.id, "https://ibb.co/5WQy7Vqh", caption=cap, parse_mode="HTML", reply_markup=rd_markup)
+        # لینک اصلاح شده به لینک مستقیم (i.ibb)
+        bot.send_photo(call.message.chat.id, "https://i.ibb.co/5WQy7Vqh/image.png", caption=cap, parse_mode="HTML", reply_markup=rd_markup)
 
     elif call.data == "rate_radin_fart":
         p = random.randint(75, 100)
@@ -150,4 +152,3 @@ def save_report(message):
 if __name__ == "__main__":
     Thread(target=run).start()
     bot.infinity_polling()
-
