@@ -148,7 +148,7 @@ def callback_logic(call):
             bot.answer_callback_query(call.id, "❌ حسین بیدار شد! همشو ازت گرفت! 😂", show_alert=True)
         bot.delete_message(call.message.chat.id, call.message.message_id)
         bot.send_message(call.message.chat.id, "عملیات تموم شد. منوی اصلی:", reply_markup=main_menu())
-        elif call.data == 'g_rank':
+    elif call.data == 'g_rank':
         top_users = sorted(user_data.items(), key=lambda x: x[1]['pastils'], reverse=True)[:10]
         lb = "👑 <b>لیست شاه دزدان پاستیل محله:</b>\n\n"
         if not top_users:
@@ -158,11 +158,7 @@ def callback_logic(call):
                 lb += f"{i}. {data.get('name', 'ناشناس')} ➔ {data['pastils']} 🍭\n"
         bot.edit_message_caption(lb, call.message.chat.id, call.message.message_id, parse_mode="HTML", 
                                  reply_markup=types.InlineKeyboardMarkup().add(types.InlineKeyboardButton("🔙 بازگشت", callback_data='go_boss')))
-            lb += f"{i}. {data.get('name', 'ناشناس')} ➔ {data['pastils']} 🍭\n"
-        bot.edit_message_caption(lb, call.message.chat.id, call.message.message_id, parse_mode="HTML", 
-                                 reply_markup=types.InlineKeyboardMarkup().add(types.InlineKeyboardButton("🔙 بازگشت", callback_data='go_boss')))
-
-    elif call.data == 'back_main':
+elif call.data == 'back_main':
         try: bot.delete_message(call.message.chat.id, call.message.message_id)
         except: pass
         bot.send_message(call.message.chat.id, "یکی رو انتخاب کن:", reply_markup=main_menu())
@@ -172,4 +168,5 @@ def callback_logic(call):
 if __name__ == "__main__":
     Thread(target=run).start()
     bot.infinity_polling()
+
 
