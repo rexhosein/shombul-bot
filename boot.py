@@ -1,4 +1,4 @@
-import telebot
+8543493612:AAHha9_7ph-kaxYCKPpztLQoeFiMygCrsUYimport telebot
 import os
 from flask import Flask
 from threading import Thread
@@ -18,7 +18,7 @@ def keep_alive():
     t.start()
 
 # --- توکن خودت رو بین دو کوتیشن بذار ---
-TOKEN = "8543493612:AAHha9_7ph-kaxYCKPpztLQoeF1MygCrsUY" 
+TOKEN = "8543493612:AAHha9_7ph-kaxYCKPpztLQoeFiMygCrsUY" 
 bot = telebot.TeleBot(TOKEN)
 
 @bot.message_handler(commands=['start'])
@@ -34,4 +34,5 @@ if __name__ == "__main__":
     keep_alive()
     print("✅ ربات آماده استفاده است...")
     bot.infinity_polling()
+
 
