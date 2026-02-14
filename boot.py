@@ -4,7 +4,7 @@ import random
 from flask import Flask
 from threading import Thread
 
-# --- تنظیمات وب‌سرور برای کویِب ---
+# --- تنظیمات سرور برای کویِب ---
 app = Flask('')
 @app.route('/')
 def home(): return "Bot is Online!"
@@ -18,7 +18,7 @@ bot = telebot.TeleBot(TOKEN)
 ADMIN_ID = 1009877033 
 BOT_NAME = "<b>⚡️ شـومبـول عـلـی ⚡️</b>"
 
-# --- منوی ثابت پایین (Reply Keyboard) ---
+# --- منوی ثابت پایین ---
 def permanent_menu():
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     btn_start = types.KeyboardButton("🏠 بازگشت به منوی اصلی")
@@ -83,7 +83,7 @@ def callback_answer(call):
         p = random.randint(81, 100)
         bot.answer_callback_query(call.id, f"🍬 رادمهر {p}% پاستیله!\nرسماً داره به جای خون، ژله تو رگاش می‌چرخه! 😂", show_alert=True)
 
-    # رئیس حسین پاستیل (همراه با بازی)
+    # رئیس حسین پاستیل (عکس جدید + بازی)
     elif call.data == "radmehr_boss":
         boss_markup = types.InlineKeyboardMarkup(row_width=1).add(
             types.InlineKeyboardButton("💉 تست تستسترون ابوی", callback_data='dad_test'),
@@ -91,7 +91,6 @@ def callback_answer(call):
             types.InlineKeyboardButton("🔙 بازگشت به رادمهر", callback_data='radmehr')
         )
         cap = "🕶 <b>اطلاعات فوق محرمانه: رئیس حسین پاستیل</b>\n\n⚖️ <b>جرم:</b> قاچاق پاستیل‌های تاریخ مصرف گذشته و خوردنِ پاستیلِ ملت!\n⚠️ <b>توضیحات:</b> ایشون جوری پاستیل می‌خوره که انگار فردا قراره شکر تو دنیا تموم بشه! رئیس کل کونی‌های شیرین‌خور منطقه!"
-        # اصلاح لینک عکس حسین
         bot.send_photo(call.message.chat.id, "https://s4.uupload.ir/files/img_20240214_170110_s4qh.jpg", caption=cap, parse_mode="HTML", reply_markup=boss_markup)
 
     elif call.data == "game_pastil":
@@ -122,7 +121,6 @@ def callback_answer(call):
                f"📝 <b>توضیحات:</b> راننده اسنپی که اگه تو ماشینش بشینی بوی جوراب و گوز خفه ات می‌کنه! 💨\n\n"
                f"💖 <b>لیست سوراخ‌ها (Ex):</b>\n❌ سلنا، النا، سیما، شیما، فاطی و ...\n\n"
                f"⚠️ <b>هشدار:</b> به دلیل نشت شدید گاز، فندک نزنید!")
-        # اصلاح لینک عکس رادین
         bot.send_photo(call.message.chat.id, "https://s4.uupload.ir/files/img_20240214_170110_s4qh.jpg", caption=cap, parse_mode="HTML", reply_markup=rd_markup)
 
     elif call.data == "rate_radin_fart":
