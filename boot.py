@@ -90,7 +90,7 @@ def callback_answer(call):
             types.InlineKeyboardButton("🔙 بازگشت به رادمهر", callback_data='radmehr')
         )
         cap = "🕶 <b>اطلاعات محرمانه: رئیس بزرگ</b>\n\n👤 <b>نام متهم:</b> حسین پاستیل\n⚖️ <b>جرم:</b> پاستیل زیاد خوردن و قاچاق شکر!\n⚠️ <b>توضیحات:</b> ایشون رئیس کل پاستیلی‌های منطقه هستن."
-        bot.send_photo(call.message.chat.id, "https://i.ibb.co/ZprsGm1t/image.png", caption=cap, parse_mode="HTML", reply_markup=boss_markup)
+        bot.send_photo(call.message.chat.id, "https://ibb.co/S4QH0SJF", caption=cap, parse_mode="HTML", reply_markup=boss_markup)
 
     elif call.data == "dad_test":
         p = random.randint(1, 19)
@@ -120,3 +120,4 @@ def callback_answer(call):
     # دکمه‌های بازگشت
     elif call.data == "back_to_main":
         bot.
+
