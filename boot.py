@@ -148,11 +148,16 @@ def callback_logic(call):
             bot.answer_callback_query(call.id, "❌ حسین بیدار شد! همشو ازت گرفت! 😂", show_alert=True)
         bot.delete_message(call.message.chat.id, call.message.message_id)
         bot.send_message(call.message.chat.id, "عملیات تموم شد. منوی اصلی:", reply_markup=main_menu())
-
-    elif call.data == 'g_rank':
-        top = sorted(user_data.items(), key=lambda x: x[1]['pastils'], reverse=True)[:10]
-        lb = "👑 <b>لیست شاه دزدان:</b>\n\n"
-        for i, (uid, data) in enumerate(top, 1):
+        elif call.data == 'g_rank':
+        top_users = sorted(user_data.items(), key=lambda x: x[1]['pastils'], reverse=True)[:10]
+        lb = "👑 <b>لیست شاه دزدان پاستیل محله:</b>\n\n"
+        if not top_users:
+            lb += "هنوز کسی دزدی نکرده!"
+        else:
+            for i, (uid, data) in enumerate(top_users, 1):
+                lb += f"{i}. {data.get('name', 'ناشناس')} ➔ {data['pastils']} 🍭\n"
+        bot.edit_message_caption(lb, call.message.chat.id, call.message.message_id, parse_mode="HTML", 
+                                 reply_markup=types.InlineKeyboardMarkup().add(types.InlineKeyboardButton("🔙 بازگشت", callback_data='go_boss')))
             lb += f"{i}. {data.get('name', 'ناشناس')} ➔ {data['pastils']} 🍭\n"
         bot.edit_message_caption(lb, call.message.chat.id, call.message.message_id, parse_mode="HTML", 
                                  reply_markup=types.InlineKeyboardMarkup().add(types.InlineKeyboardButton("🔙 بازگشت", callback_data='go_boss')))
@@ -167,3 +172,4 @@ def callback_logic(call):
 if __name__ == "__main__":
     Thread(target=run).start()
     bot.infinity_polling()
+
