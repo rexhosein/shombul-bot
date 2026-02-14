@@ -64,7 +64,7 @@ def callback_answer(call):
         boss_markup.add(types.InlineKeyboardButton("💉 تست تستسترون ابوی (پدر)", callback_data='dad_test'))
         boss_markup.add(types.InlineKeyboardButton("🔙 بازگشت به رادمهر", callback_data='radmehr'))
         cap = "🕶 <b>اطلاعات محرمانه: رئیس بزرگ</b>\n\n👤 <b>نام متهم:</b> حسین پاستیل\n⚖️ <b>جرم:</b> پاستیل زیاد خوردن و قاچاق شکر!\n⚠️ <b>وضعیت:</b> به شدت پاستیلی!"
-        bot.send_photo(call.message.chat.id, "https://i.ibb.co/ZprsGm1t/image.png", caption=cap, parse_mode="HTML", reply_markup=boss_markup)
+        bot.send_photo(call.message.chat.id, "https://ibb.co/hxpnbjwb", caption=cap, parse_mode="HTML", reply_markup=boss_markup)
 
     elif call.data == "dad_test":
         p = random.randint(1, 19) # تست زیر 20 درصد
@@ -100,3 +100,4 @@ def save_report(message):
 if __name__ == "__main__":
     Thread(target=run).start()
     bot.infinity_polling()
+
