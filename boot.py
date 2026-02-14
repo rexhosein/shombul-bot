@@ -4,10 +4,10 @@ import random
 from flask import Flask
 from threading import Thread
 
-# --- تنظیمات وب‌سرور برای کویِب ---
+# --- تنظیمات وب‌سرور برای زنده ماندن در کویِب ---
 app = Flask('')
 @app.route('/')
-def home(): return "Bot is Online!"
+def home(): return "Shombul Ali is Alive!"
 
 def run(): app.run(host='0.0.0.0', port=8000)
 
@@ -15,16 +15,18 @@ def run(): app.run(host='0.0.0.0', port=8000)
 TOKEN = "8543493612:AAHha9_7ph-kaxYCKPpztLQoeFiMygCrsUY"
 bot = telebot.TeleBot(TOKEN)
 
+ADMIN_ID = 1009877033 
 BOT_NAME = "<b>⚡️ شـومبـول عـلـی ⚡️</b>"
 
-# --- تابع ساخت منوی چسبیده پایین (Reply Keyboard) ---
+# --- منوی چسبیده پایین صفحه (Reply Keyboard) ---
 def permanent_menu():
-    markup = types.ReplyKeyboardMarkup(resize_keyboard=True) # این خط باعث میشه دکمه‌ها اندازه مناسب بگیرن
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     btn_start = types.KeyboardButton("🏠 بازگشت به منوی اصلی")
-    markup.add(btn_start)
+    btn_snap = types.KeyboardButton("🚕 اسنپ اوشاخلاری")
+    markup.add(btn_start, btn_snap)
     return markup
 
-# --- منوی شیشه‌ای اصلی ---
+# --- منوی شیشه‌ای لیست اصلی ---
 def main_menu_inline():
     markup = types.InlineKeyboardMarkup(row_width=2)
     btn1 = types.InlineKeyboardButton("👑 مهدی ساری", callback_data='mehdi')
@@ -36,24 +38,29 @@ def main_menu_inline():
 
 @bot.message_handler(commands=['start'])
 def welcome(message):
-    # اینجا هم منوی شیشه‌ای رو میفرستیم هم منوی چسبیده پایین رو فعال میکنیم
     bot.send_message(message.chat.id, f"سـلام! مـن {BOT_NAME} هستـم 😎\nآمار کونی‌های محل رو از من بگیر: 👇", 
-                     parse_mode="HTML", 
-                     reply_markup=permanent_menu()) # منوی پایین فعال میشه
+                     parse_mode="HTML", reply_markup=permanent_menu())
+    bot.send_message(message.chat.id, "لیست نفرات اصلی:", reply_markup=main_menu_inline())
+
+# --- مدیریت دکمه‌های متنی پایین ---
+@bot.message_handler(func=lambda message: True)
+def handle_text(message):
+    if message.text == "🏠 بازگشت به منوی اصلی":
+        bot.send_message(message.chat.id, "برگشتیم لیست اصلی: 👇", reply_markup=main_menu_inline())
     
-    bot.send_message(message.chat.id, "یکی از گزینه‌ها رو انتخاب کن:", reply_markup=main_menu_inline())
+    elif message.text == "🚕 اسنپ اوشاخلاری":
+        snap_markup = types.InlineKeyboardMarkup()
+        snap_markup.add(types.InlineKeyboardButton("🕳 رادین هول", callback_data='radin_hole'))
+        bot.send_message(message.chat.id, "🚖 لیست رانندگان اسنپ اوشاخلاری:", reply_markup=snap_markup)
 
-# --- پاسخ به دکمه چسبیده پایین ---
-@bot.message_handler(func=lambda message: message.text == "🏠 بازگشت به منوی اصلی")
-def back_to_home(message):
-    bot.send_message(message.chat.id, "برگشتیم منوی اصلی! 👇", reply_markup=main_menu_inline())
-
+# --- مدیریت تمام کلیک‌های دکمه‌های شیشه‌ای ---
 @bot.callback_query_handler(func=lambda call: True)
 def callback_answer(call):
-    # کدهای قبلی رادمهر و مهدی و غیره اینجا باشن (همون کدهایی که تو مرحله قبل برات فرستادم)
-    # ... (بقیه بخش‌های callback_answer رو طبق کد قبلی اینجا قرار بده)
-    bot.answer_callback_query(call.id)
+    back = types.InlineKeyboardMarkup()
+    back.add(types.InlineKeyboardButton("🔙 بازگشت به لیست اصلی", callback_data='back'))
 
-if __name__ == "__main__":
-    Thread(target=run).start()
-    bot.infinity_polling()
+    # --- پرونده مهدی ساری ---
+    if call.data == "mehdi":
+        m_markup = types.InlineKeyboardMarkup()
+        m_markup.add(types.InlineKeyboardButton("🔥 سنجش میزان کونی بودن", callback_data='rate_mehdi'))
+        m_markup.add(types.Inline
