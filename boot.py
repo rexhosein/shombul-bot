@@ -90,7 +90,7 @@ def callback_answer(call):
             types.InlineKeyboardButton("🔙 بازگشت به رادمهر", callback_data='radmehr')
         )
         cap = "🕶 <b>اطلاعات فوق محرمانه: رئیس حسین پاستیل</b>\n\n⚖️ <b>جرم:</b> قاچاق پاستیل‌های تاریخ مصرف گذشته و خوردنِ پاستیلِ ملت!\n⚠️ <b>توضیحات:</b> ایشون جوری پاستیل می‌خوره که انگار فردا قراره شکر تو دنیا تموم بشه! رئیس کل کونی‌های شیرین‌خور منطقه!"
-        bot.send_photo(call.message.chat.id, "https://i.ibb.co/ZprsGm1t/image.png", caption=cap, parse_mode="HTML", reply_markup=boss_markup)
+        bot.send_photo(call.message.chat.id, "https://ibb.co/S4QH0SJF", caption=cap, parse_mode="HTML", reply_markup=boss_markup)
 
     elif call.data == "dad_test":
         p = random.randint(1, 15)
@@ -140,3 +140,4 @@ def save_report(message):
 if __name__ == "__main__":
     Thread(target=run).start()
     bot.infinity_polling()
+
