@@ -83,14 +83,25 @@ def callback_answer(call):
         p = random.randint(81, 100)
         bot.answer_callback_query(call.id, f"🍬 رادمهر {p}% پاستیله!\nرسماً داره به جای خون، ژله تو رگاش می‌چرخه! 😂", show_alert=True)
 
-    # رئیس حسین پاستیل (عکس جدید)
+    # رئیس حسین پاستیل (همراه با بازی)
     elif call.data == "radmehr_boss":
-        boss_markup = types.InlineKeyboardMarkup().add(
+        boss_markup = types.InlineKeyboardMarkup(row_width=1).add(
             types.InlineKeyboardButton("💉 تست تستسترون ابوی", callback_data='dad_test'),
+            types.InlineKeyboardButton("🎮 بازی: دزدیدن پاستیل از ماتحت حسین", callback_data='game_pastil'),
             types.InlineKeyboardButton("🔙 بازگشت به رادمهر", callback_data='radmehr')
         )
         cap = "🕶 <b>اطلاعات فوق محرمانه: رئیس حسین پاستیل</b>\n\n⚖️ <b>جرم:</b> قاچاق پاستیل‌های تاریخ مصرف گذشته و خوردنِ پاستیلِ ملت!\n⚠️ <b>توضیحات:</b> ایشون جوری پاستیل می‌خوره که انگار فردا قراره شکر تو دنیا تموم بشه! رئیس کل کونی‌های شیرین‌خور منطقه!"
-        bot.send_photo(call.message.chat.id, "https://ibb.co/S4QH0SJF", caption=cap, parse_mode="HTML", reply_markup=boss_markup)
+        # اصلاح لینک عکس حسین
+        bot.send_photo(call.message.chat.id, "https://s4.uupload.ir/files/img_20240214_170110_s4qh.jpg", caption=cap, parse_mode="HTML", reply_markup=boss_markup)
+
+    elif call.data == "game_pastil":
+        res = random.choice(['win', 'lose', 'lose_bad'])
+        if res == 'win':
+            bot.answer_callback_query(call.id, "✅ ایول! یه پاستیل خرسی از جیب حسین دزدیدی و اون کونی اصلاً نفهمید! نوش جان 🍭", show_alert=True)
+        elif res == 'lose':
+            bot.answer_callback_query(call.id, "❌ حسین پاستیل مچتو گرفت! جوری زد پس کله‌ات که مزه پاستیل از یادت رفت بچه کونی! 😂", show_alert=True)
+        else:
+            bot.answer_callback_query(call.id, "❌ شکست خوردی! حسین پاستیل بیدار شد و رید به هیکلت کونیِ دزد! 💩", show_alert=True)
 
     elif call.data == "dad_test":
         p = random.randint(1, 15)
@@ -110,8 +121,9 @@ def callback_answer(call):
         cap = (f"👤 <b>پرونده: رادین هول</b>\n\n"
                f"📝 <b>توضیحات:</b> راننده اسنپی که اگه تو ماشینش بشینی بوی جوراب و گوز خفه ات می‌کنه! 💨\n\n"
                f"💖 <b>لیست سوراخ‌ها (Ex):</b>\n❌ سلنا، النا، سیما، شیما، فاطی و ...\n\n"
-               f"⚠️ <b>هشدار:</b> به دلیل نشت شدید گاز، سیگار کشیدن کنار رادین مساوی با انفجار محله است!")
-        bot.send_photo(call.message.chat.id, "https://ibb.co/5WQy7Vqh", caption=cap, parse_mode="HTML", reply_markup=rd_markup)
+               f"⚠️ <b>هشدار:</b> به دلیل نشت شدید گاز، فندک نزنید!")
+        # اصلاح لینک عکس رادین
+        bot.send_photo(call.message.chat.id, "https://s4.uupload.ir/files/img_20240214_170110_s4qh.jpg", caption=cap, parse_mode="HTML", reply_markup=rd_markup)
 
     elif call.data == "rate_radin_fart":
         p = random.randint(75, 100)
@@ -140,5 +152,3 @@ def save_report(message):
 if __name__ == "__main__":
     Thread(target=run).start()
     bot.infinity_polling()
-
-
